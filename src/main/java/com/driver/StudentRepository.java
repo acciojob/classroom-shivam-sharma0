@@ -18,6 +18,18 @@ public class StudentRepository {
     }
 
     public void addStudentTeacherPair(String student, String teacher) {
+        Teacher tempTeacher = null;
+        for (Teacher teacher1:teacherList){
+            if(teacher1.getName().equals(teacher)){
+                tempTeacher=teacher1;
+                teacherList.remove(teacher1);
+                break;
+            }
+        }
+        int noOfStudent= tempTeacher.getNumberOfStudents();
+        tempTeacher.setNumberOfStudents(noOfStudent+1);
+        teacherList.add(tempTeacher);
+
         List<String> studentsWithOneTeacher;
         if(teacherWithStudentMap.containsKey(teacher)){
             studentsWithOneTeacher = teacherWithStudentMap.get(teacher);
